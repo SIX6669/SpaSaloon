@@ -1,16 +1,15 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
+// App.jsx
+import Header from './componentes/Header';
 import './App.css';
-import Button from './componentes/buttons';
-
 
 function App() {
   return (
-    <div>
-      <Button onClick={() => alert('Reservaste tu cita 😌')}>
-        Turno
-      </Button>
+    <div className="App">
+      <Header />
+      <div className="header-spacer"></div>
+      <main>
+        {/* Contenido principal */}
+      </main>
     </div>
   );
 }
