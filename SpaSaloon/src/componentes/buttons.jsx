@@ -1,15 +1,12 @@
-// eslint-disable-next-line react-refresh/only-export-components
-function MyButton() {
+import React from 'react';
+import '../styles/buttons.css';
+
+const Button = ({ children, onClick, type = 'button', className = '' }) => {
   return (
-    <button>Soy un botón</button>
+    <button className={`spa-button ${className}`} type={type} onClick={onClick}>
+      {children}
+    </button>
   );
-}
+};
 
-
-function texto() {
-  return (
-    <p>Texto de ejemplo</p>
-  );
-}
-
-export { texto, MyButton };
+export default Button;
