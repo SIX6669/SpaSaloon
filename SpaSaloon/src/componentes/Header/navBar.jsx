@@ -4,10 +4,10 @@ import NavItem from './navItem';
 const Navigation = () => {
   const menuItems = [
     { text: 'Servicios', href: '/servicios' },
-    { text: 'Sobre nosotros', href: '/sobre-nosotros' },
-    { text: 'photos', href: '/photos' },
-    { text: 'eventos', href: '/eventos' },
-    { text: 'Contacto', href: '/contacto' }
+    { text: 'Fotos', href: '/fotos' },
+    { text: 'Eventos', href: '/eventos' },
+    { text: 'Contacto', href: '/contacto' },
+    { text: 'Sobre Nosotros', href: '/sobre-nosotros' }
   ];
 
   return (

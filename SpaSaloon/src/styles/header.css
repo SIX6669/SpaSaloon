@@ -1,71 +1,97 @@
-  
-  /* Añadir un espaciador para que el contenido no quede debajo del header */
-  .header-spacer {
-    height: 70px;
-    width: 100%;
-  }
-  .main-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 70px; /* Mantiene los 150px que mencionaste */
-    background-color: #256D85	;
-    color: #fff;
-    z-index: 1000;
-  }
-  
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-/* Estilos para el logo */
-.logo-container {
+/* header.css */
+.main-header {
+  width: 100%;
+  background-color: #256D85;
+  color: white;
+  height: 70px; /* Ajusta según la altura que necesites */
   display: flex;
   align-items: center;
-  height: 100%;
+  position: fixed; /* <-- NUEVO */
+  top: 0;           /* <-- NUEVO */
+  left: 0;          /* <-- NUEVO */
+  z-index: 1000;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .logo {
-  display: flex;
-  flex-direction: column;
-  line-height: 1;
-}
+    background-color: #256D85;
+    max-height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centra horizontalmente */
+    padding: 0 20px; /* Igual al padding de los enlaces */
+    box-sizing: border-box;
+  }
+  
+  .logo-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 1.2;
+  }
 
 .logo-main {
-  font-size: 1.8rem;
+  font-size: 16px;
   font-weight: bold;
-  color: #fff;
+  margin: 0;
 }
-  
-  /* Estilos para la navegación */
-  .navigation {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
+
+.logo-subtitle {
+  font-size: 14px;
+  margin: 0;
+}
+
+/* Estilos para la navegación */
+.navigation ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.nav-item {
+  height: 70px;
+  display: flex;
+  align-items: center;
+}
+
+.nav-item a {
+  color: white;
+  text-decoration: none;
+  padding: 0 20px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+.nav-item a:hover {
+  background-color: #153A46;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
   }
   
   .navigation ul {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    gap: 2rem;
+    flex-direction: column;
   }
   
-  .nav-item a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 1rem;
-    transition: color 0.3s ease;
+  .main-header {
+    height: auto;
   }
   
-  .nav-item a:hover {
-    color: #ccc;
+  .nav-item, .logo {
+    width: 100%;
+    justify-content: center;
   }
+}

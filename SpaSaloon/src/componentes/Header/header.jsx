@@ -1,6 +1,6 @@
 import Logo from './logo';
 import Navigation from './navBar';
-import '../../styles/header.css';
+import '../../styles/header.css'; // Ajusta la ruta según tu estructura
 
 const Header = () => {
   return (
