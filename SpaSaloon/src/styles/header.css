@@ -54,12 +54,14 @@
   margin: 0;
   padding: 0;
   height: 100%;
+
 }
 
 .nav-item {
   height: 70px;
   display: flex;
   align-items: center;
+  border-left: 1px solid #fff;
 }
 
 .nav-item a {
