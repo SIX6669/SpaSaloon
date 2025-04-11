@@ -1,14 +1,14 @@
-/* header.css */
+
 .main-header {
   width: 100%;
   background-color: #0A2647;
   color: white;
-  height: 70px; /* Ajusta según la altura que necesites */
+  height: 70px; 
   display: flex;
   align-items: center;
-  position: fixed; /* <-- NUEVO */
-  top: 0;           /* <-- NUEVO */
-  left: 0;          /* <-- NUEVO */
+  position: fixed; 
+  top: 0;           
+  left: 0;         
   z-index: 1000;
 }
 
@@ -24,8 +24,8 @@
     max-height: 70px;
     display: flex;
     align-items: center;
-    justify-content: center; /* Centra horizontalmente */
-    padding: 0 20px; /* Igual al padding de los enlaces */
+    justify-content: center; 
+    padding: 0 20px; 
     box-sizing: border-box;
   }
   
@@ -47,7 +47,7 @@
   margin: 0;
 }
 
-/* Estilos para la navegación */
+
 .navigation ul {
   display: flex;
   list-style: none;
@@ -78,7 +78,6 @@
   background-color: #144272;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .container {
     flex-direction: column;

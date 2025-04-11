@@ -1,4 +1,3 @@
-// App.jsx
 import Header from './componentes/Header';
 import './App.css';
 import Card from './componentes/cards';

@@ -1,4 +1,3 @@
-// navBar.jsx
 import NavItem from './navItem';
 
 const Navigation = () => {
