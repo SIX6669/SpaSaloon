@@ -1,16 +1,12 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
 import './App.css';
 import Button from './componentes/buttons';
-
+import Carousel from './componentes/carousel';
 
 function App() {
   return (
     <div>
-      <Button onClick={() => alert('Reservaste tu cita 😌')}>
-        Turno
-      </Button>
+      <h1>Welcome to Spa Saloon</h1>
+      <Carousel></Carousel>
     </div>
   );
 }
