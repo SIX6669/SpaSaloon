@@ -1,11 +1,15 @@
 import Logo from './logo';
 import Navigation from './navBar';
-import '../../styles/header.css'; 
+import LoginButton from './loginButton';
+import '../../styles/header.css';
 
 const Header = () => {
   return (
     <header className="main-header">
       <div className="container">
+        <div className="left-section">
+          <LoginButton />
+        </div>
         <Logo />
         <Navigation />
       </div>

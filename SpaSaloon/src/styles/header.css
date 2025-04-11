@@ -18,6 +18,60 @@
   justify-content: space-between;
   align-items: center;
 }
+.left-section {
+  display: flex;
+  align-items: center;
+}
+
+/* Estilos para el botón de login */
+.login-container {
+  position: relative;
+}
+
+.login-button {
+  background-color: #153A46;
+  color: white;
+  border: none;
+  padding: 0 20px;
+  cursor: pointer;
+  height: 70px;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.login-button:hover {
+  background-color: #0c222b;
+}
+
+/* Estilos para el sidebar */
+.login-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 100vh;
+  background-color: #256D85;
+  z-index: 1001;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+}
+
+.sidebar-content {
+  padding: 20px;
+  margin-top: 40px;
+  color: white;
+}
 
 .logo {
     background-color: #0A2647;
