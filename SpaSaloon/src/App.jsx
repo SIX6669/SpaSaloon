@@ -9,12 +9,13 @@ function App() {
       <Header />
       <div className="header-spacer"></div>
       <Hero />
+      <div className="div-masaje">
+      <Card title={"Masajes"}/>
+      </div>
       <main>
-        {
-        }
+        
       </main>
     </div>
   );
 }
-
 export default App;

@@ -18,16 +18,15 @@ const LoginButton = () => {
       
       {isOpen && (
         <div className="login-sidebar">
-          {/* Aquí se añadirá el formulario de login en el futuro */}
           <button 
             className="close-button"
-            onClick={toggleSidebar}
-          >
+            onClick={toggleSidebar}>
             &times;
           </button>
           <div className="sidebar-content">
             <h2>Iniciar Sesión</h2>
-            {/* Contenido del sidebar (por ahora vacío) */}
+            {<h2>hola mundo
+              </h2>}
           </div>
         </div>
       )}

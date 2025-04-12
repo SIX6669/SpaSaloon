@@ -18,7 +18,10 @@
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
-
+.div-masaje {
+  height: 200px;
+  width: 200px;
+}
 
 @keyframes logo-spin {
   from {
