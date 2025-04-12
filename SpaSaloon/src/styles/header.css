@@ -1,0 +1,152 @@
+
+.main-header {
+  width: 100%;
+  background-color: #0A2647;
+  color: white;
+  height: 70px; 
+  display: flex;
+  align-items: center;
+  position: fixed; 
+  top: 0;           
+  left: 0;         
+  z-index: 1000;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.left-section {
+  display: flex;
+  align-items: center;
+}
+
+/* Estilos para el botón de login */
+.login-container {
+  position: relative;
+}
+
+.login-button {
+  background-color: #153A46;
+  color: white;
+  border: none;
+  padding: 0 20px;
+  cursor: pointer;
+  height: 70px;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.login-button:hover {
+  background-color: #0c222b;
+}
+
+/* Estilos para el sidebar */
+.login-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 100vh;
+  background-color: #256D85;
+  z-index: 1001;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+}
+
+.sidebar-content {
+  padding: 20px;
+  margin-top: 40px;
+  color: white;
+}
+
+.logo {
+    background-color: #0A2647;
+    max-height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    padding: 0 20px; 
+    box-sizing: border-box;
+  }
+  
+  .logo-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 1.2;
+  }
+
+.logo-main {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.logo-subtitle {
+  font-size: 14px;
+  margin: 0;
+}
+
+
+.navigation ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+
+}
+
+.nav-item {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  border-left: 1px solid #fff;
+}
+
+.nav-item a {
+  color: white;
+  text-decoration: none;
+  padding: 0 20px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+.nav-item a:hover {
+  background-color: #144272;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+  
+  .navigation ul {
+    flex-direction: column;
+  }
+  
+  .main-header {
+    height: auto;
+  }
+  
+  .nav-item, .logo {
+    width: 100%;
+    justify-content: center;
+  }
+}

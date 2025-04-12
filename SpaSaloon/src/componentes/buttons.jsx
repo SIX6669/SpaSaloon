@@ -6,6 +6,7 @@ const Button = ({ children, onClick, type = 'button', className = '' }) => {
     <button className={`spa-button ${className}`} type={type} onClick={onClick}>
       {children}
     </button>
+    //probando github por que no me anda aaaaaaaaaaaaaaaaaaaaaa
   );
 };
 

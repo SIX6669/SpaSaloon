@@ -1,14 +1,15 @@
+import { useState } from 'react';
 import './App.css';
 import Button from './componentes/buttons';
-import Carousel from './componentes/carousel';
+
 
 function App() {
   return (
     <div>
-      <h1>Welcome to Spa Saloon</h1>
-      <Carousel></Carousel>
+      <Button onClick={() => alert('Reservaste tu cita 😌')}>
+        Turno
+      </Button>
     </div>
   );
 }
-
 export default App;

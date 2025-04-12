@@ -1,10 +1,11 @@
 #root {
-  max-width: 1280px;
+  width: 100%;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0rem;
   text-align: center;
+  height: 100%;
+  background-image: url("/images/fondohero.jpg");
 }
-
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -16,6 +17,10 @@
 }
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
+}
+.div-masaje {
+  height: 200px;
+  width: 200px;
 }
 
 @keyframes logo-spin {
