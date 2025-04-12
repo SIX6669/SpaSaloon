@@ -14,7 +14,7 @@ import Formulario from './componentes/Formularios/formulario.jsx';
 function App() {
   return (
     <div>
-      <Formulario></Formulario>
+      <Header></Header>
     </div>
   );
 }

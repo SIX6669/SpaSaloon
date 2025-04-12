@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import Formulario from '../Formularios/formulario.jsx';
+import Boton from '../Formularios/boton.jsx';
+import '../../styles/botonLogin.css';
 
 const LoginButton = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -7,29 +10,19 @@ const LoginButton = () => {
     setIsOpen(!isOpen);
   };
 
+  const closeSidebar = () => {
+    setIsOpen(false);
+  };
+
   return (
     <div className="login-container">
-      <button 
-        className="login-button" 
+      <Boton
+        text="Log In" 
         onClick={toggleSidebar}
-      >
-        Log In
-      </button>
+        className="login-button"
+      />
       
-      {isOpen && (
-        <div className="login-sidebar">
-          <button 
-            className="close-button"
-            onClick={toggleSidebar}>
-            &times;
-          </button>
-          <div className="sidebar-content">
-            <h2>Iniciar Sesión</h2>
-            {<h2>hola mundo
-              </h2>}
-          </div>
-        </div>
-      )}
+      {isOpen && <Formulario onClose={closeSidebar} />}
     </div>
   );
 };
