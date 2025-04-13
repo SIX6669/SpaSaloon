@@ -21,8 +21,8 @@ const Servicios = () => {
       <div className="servicios-container">
         <div className="servicios-column">
           <Etiqueta 
-            text="servicios individuales" 
-            fontSize="28px"
+            text="Servicios Individuales" 
+            fontSize= "40px"
             textColor="white"
             padding="10px 0"
             className="servicios-title"
@@ -41,7 +41,7 @@ const Servicios = () => {
         <div className="servicios-column">
           <Etiqueta 
             text="servicios grupales" 
-            fontSize="28px" 
+            fontSize="40px" 
             textColor="white"
             padding="10px 0"
             className="servicios-title"

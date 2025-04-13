@@ -1,0 +1,176 @@
+.contacto-section {
+  width: 100%;
+  height: 100vh; /* Exactly 100vh height */
+  background: rgba(3, 37, 73, 0.527);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden; /* Prevent overflow */
+}
+
+.contacto-container {
+  width: 100%;
+  max-width: 1200px;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.contacto-info,
+.contacto-form-container {
+  flex: 1;
+  height: 80vh; /* Control height to fit within viewport */
+  display: flex;
+  flex-direction: column;
+}
+
+.contacto-info {
+  justify-content: space-between;
+}
+
+.contacto-title {
+  text-align: left;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+}
+
+.contacto-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+}
+
+.contacto-detail-item {
+  margin-bottom: 0.5rem;
+}
+
+.contacto-label {
+  text-align: left;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.contacto-value {
+  text-align: left;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.contacto-map-container {
+  width: 100%;
+  height: 40vh; /* Control height to fit in viewport */
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  margin-top: 1rem;
+}
+
+.contacto-map {
+  width: 100%;
+  height: 100%;
+}
+
+.contacto-form-container {
+  justify-content: center;
+  height: 80vh;
+}
+
+.contacto-form-header {
+  margin-bottom: 1rem;
+}
+
+.contacto-form-title {
+  text-align: left;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.contacto-form-subtitle {
+  text-align: right;
+  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 0.5rem;
+}
+
+.contacto-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  height: auto;
+}
+
+.form-group {
+  width: 100%;
+}
+
+.form-custom-input {
+  width: 100%;
+}
+
+/* Style textarea when used through Input component */
+.form-custom-input.textarea {
+  min-height: 100px;
+  height: 40vh;
+}
+
+.form-submit {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.5rem;
+}
+
+/* Make the layout more symmetric */
+@media (min-width: 993px) {
+  .contacto-info,
+  .contacto-form-container {
+    padding: 1rem;
+  }
+  
+  .contacto-form-container {
+    padding-left: 2rem;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+  }  
+}
+
+/* Responsive layout */
+@media (max-width: 992px) {
+  .contacto-section {
+    height: auto;
+    min-height: 100vh;
+  }
+  
+  .contacto-container {
+    flex-direction: column;
+    padding: 2rem 1rem;
+    height: auto;
+  }
+  
+  .contacto-info,
+  .contacto-form-container {
+    width: 100%;
+    height: auto;
+  }
+  
+  .contacto-map-container {
+    height: 250px;
+  }
+  
+  .contacto-form-title, 
+  .contacto-form-subtitle {
+    text-align: left;
+  }
+  
+  .form-submit {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .contacto-map-container {
+    height: 200px;
+  }
+}

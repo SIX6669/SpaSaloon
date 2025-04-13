@@ -1,7 +1,6 @@
 .servicios-section {
     width: 100%;
     min-height: 100vh;
-    padding: 4rem 2rem;
     background: rgba(3, 37, 73, 0.527);
     display: flex;
     justify-content: center;
@@ -44,6 +43,7 @@
     letter-spacing: 1px;
     margin-bottom: 1rem;
     text-transform: lowercase;
+    align-self: center;
   }
   
   .servicios-cards-grid {
