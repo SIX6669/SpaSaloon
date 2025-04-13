@@ -6,7 +6,7 @@ function Hero() {
     <section 
       className="hero-section" 
       id="inicio"
-      style={{ backgroundImage: 'url("/images/fondohero.jpg")' }}
+      style={{ backgroundImage: 'url("public/Images/fondoHero.jpg")' }}
     >
       <div className="hero-overlay">
         <div className="hero-content">
