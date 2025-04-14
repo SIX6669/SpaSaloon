@@ -1,12 +1,12 @@
 import React from 'react'; 
 import '../../styles/hero.css';
-
+import img from '../../assets/fondoHero.jpg';
 function Hero() {
   return (
     <section 
       className="hero-section" 
       id="inicio"
-      style={{ backgroundImage: 'url("public/Images/fondoHero.jpg")' }}
+      style={{ backgroundImage: `url(${img})`, backgroundSize: 'cover', backgroundPosition: 'center' }}	
     >
       <div className="hero-overlay">
         <div className="hero-content">

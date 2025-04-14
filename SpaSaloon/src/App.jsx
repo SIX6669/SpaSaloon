@@ -3,7 +3,7 @@ import React from 'react';
 import './App.css';
 /* componentes para agregar/importar
 import Button from './componentes/buttons.jsx';
-import Carousel from './componentes/carousel.jsx';
+
 import Input from './componentes/Formularios/input.jsx';
 import Etiqueta from './componentes/Formularios/etiquetas.jsx';
 import Boton from './componentes/Formularios/boton.jsx';
@@ -14,7 +14,7 @@ import Servicios from './componentes/Body/servicios.jsx';
 import SobreNosotros from './componentes/Body/sobre-nosotros.jsx';
 import Contacto from './componentes/Body/contacto.jsx';
 import Header from './componentes/Header/header.jsx';
-
+import Galeria from './componentes/Body/galeria.jsx';
 
 
 
@@ -23,7 +23,7 @@ function App() {
     <>
       <Header />
       <div className="main-content">
-        <section className="section hero-section" id="hero">
+      <section className="section hero-section" id="hero">
           <Hero />
         </section>
         <section className="section section-masajes" id="sobre-nosotros">
@@ -32,10 +32,12 @@ function App() {
         <section className="section section-servicios" id="servicios">
           <Servicios></Servicios>
         </section>
+        <section className = "section" id="fotos">
+          <Galeria></Galeria>
+        </section>
         <section className="section section-contacto" id="contacto">
           <Contacto></Contacto>
         </section>
-        {/* Add more sections as needed */}
       </div>
     </>
   );

@@ -2,18 +2,24 @@ import React from 'react';
 import Card from '../cards';
 import Etiqueta from '../Formularios/etiquetas.jsx';
 import '../../styles/servicios.css';
+import masagesImg from '../../assets/masajes.jpg';
+import bellezaImg from '../../assets/belleza.jpg';
+import facialesImg from '../../assets/faciales.jpg';
+import saunaImg from '../../assets/sauna.jpg';
+import hidromasajesImg from '../../assets/hidromasajes.jpg';
+import yogaImg from '../../assets/yoga.jpg';
 
 const Servicios = () => {
   const serviciosIndividuales = [
-    { title: 'masajes', imageSrc: 'masajes.jpg' },
-    { title: 'belleza', imageSrc: 'belleza.jpg' },
-    { title: 'tratamientos faciales', imageSrc: 'faciales.jpg' },
-    { title: 'sauna', imageSrc: 'sauna.jpg' }
+    { title: 'masajes', imageSrc: `${masagesImg}` },
+    { title: 'belleza', imageSrc: `${bellezaImg}` },	
+    { title: 'tratamientos faciales', imageSrc: `${facialesImg}` },
+    { title: 'sauna', imageSrc: `${saunaImg}` },
   ];
 
   const serviciosGrupales = [
-    { title: 'hidromasajes', imageSrc: 'hidromasajes.jpg' },
-    { title: 'yoga', imageSrc: 'yoga.jpg' }
+    { title: 'hidromasajes', imageSrc:`${hidromasajesImg}` },
+    { title: 'yoga', imageSrc: `${yogaImg}` },
   ];
 
   return (
