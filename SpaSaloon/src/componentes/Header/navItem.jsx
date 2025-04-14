@@ -1,8 +1,19 @@
 
 const NavItem = ({ text, href }) => {
-  return (
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    const section = document.getElementById(href.replace('#', ''));
+    (section)? section.scrollIntoView({ behavior: 'smooth' }) : null;
+  };
+
+    return (
     <li className="nav-item">
-      <a href={href}>{text}</a>
+      <a href={href}
+      onCllick={handleClick}
+      >
+        {text}
+      </a>
     </li>
   );
 };
