@@ -1,0 +1,257 @@
+/* PerfilUsuario.css - Estilos integrados para todo el perfil de usuario */
+
+/* Estilos generales del contenedor principal */
+.perfil-container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding: 20px;
+    background-color: rgba(3, 37, 73, 0.527);
+    min-height: 100vh;
+    color: white;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Estilos para cada sección */
+  .perfil-seccion {
+    border-radius: 12px;
+    background-color: rgba(13, 71, 161, 0.3);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  /* Sección de turnos */
+  .turnos-seccion {
+    flex: 3;
+    max-width: 60%;
+  }
+  
+  /* Sección de datos personales */
+  .datos-seccion {
+    flex: 2;
+    max-width: 40%;
+  }
+  
+  /* Títulos de sección */
+  .seccion-titulo {
+    width: 100%;
+    padding: 15px !important;
+    background-color: rgba(25, 118, 210, 0.5);
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  /* Contenido de turnos */
+  .turnos-contenido {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    gap: 20px;
+    height: calc(100% - 70px);
+  }
+  
+  /* Estilos para el contenedor del calendario */
+  .turnos-calendario {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Ajustes para que el calendario ocupe todo el espacio disponible */
+  .turnos-calendario .custom-calendar-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .turnos-calendario .custom-calendar {
+    width: 100%;
+    height: 100%;
+    max-height: unset;
+    min-height: 350px;
+  }
+  
+  .turnos-calendario .react-calendar {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .turnos-calendario .react-calendar__viewContainer {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .turnos-calendario .react-calendar__month-view {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .turnos-calendario .react-calendar__month-view > div {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .turnos-calendario .react-calendar__month-view__days {
+    flex: 1;
+  }
+  
+  /* Botones de acción para los turnos */
+  .turnos-acciones {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    gap: 10px;
+  }
+  
+  /* Datos personales */
+  .datos-contenido {
+    padding: 20px;
+    height: calc(100% - 70px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .datos-visualizacion {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .dato-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 10px;
+    background-color: rgba(25, 118, 210, 0.2);
+    border-radius: 8px;
+  }
+  
+  .dato-item span {
+    font-size: 16px;
+    padding: 5px 10px;
+  }
+  
+  .datos-acciones {
+    margin-top: 20px;
+    text-align: right;
+  }
+  
+  /* Formulario de edición */
+  .datos-formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .dato-grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .dato-grupo label {
+    font-size: 14px;
+    color: #90caf9;
+  }
+  
+  .dato-grupo input {
+    padding: 12px;
+    border: 1px solid #2a5f8f;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 16px;
+  }
+  
+  /* Estilos para el botón personalizado */
+  .custom-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-family: 'Arial', sans-serif;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    outline: none;
+    text-decoration: none;
+    white-space: nowrap;
+    user-select: none;
+  }
+  
+  .custom-button:hover {
+    background-color: var(--hover-bg-color) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .custom-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+  }
+  
+  .custom-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+  }
+  
+  .custom-button:active:not(:disabled) {
+    transform: scale(0.98);
+  }
+  
+  /* Estilos para la etiqueta personalizada */
+  .user-tag {
+    display: inline-block;
+    background-color: rgba(25, 118, 210, 0.3);
+    border-left: 3px solid #90caf9;
+    font-family: 'Arial', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+    cursor: default;
+    user-select: none;
+  }
+  
+  .user-tag:hover {
+    background-color: rgba(25, 118, 210, 0.4);
+  }
+  
+  .seccion-titulo {
+    background-color: rgba(13, 71, 161, 0.6) !important;
+    border-left: none !important;
+    font-weight: 600 !important;
+    letter-spacing: 1px !important;
+    text-transform: uppercase;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+  }
+  
+  /* Responsive */
+  @media (max-width: 900px) {
+    .perfil-container {
+      flex-direction: column;
+    }
+    
+    .turnos-seccion,
+    .datos-seccion {
+      max-width: 100%;
+    }
+  }
