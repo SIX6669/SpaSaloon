@@ -25,6 +25,7 @@ function App() {
       <Header />
       <div className="main-content">
         <section className="section hero-section" id="hero">
+          <Hero></Hero>
         </section>
         <section className="section section-masajes" id="sobre-nosotros">
           <SobreNosotros></SobreNosotros>
