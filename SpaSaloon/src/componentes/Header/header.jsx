@@ -8,10 +8,12 @@ const Header = () => {
     <header className="main-header">
       <div className="container">
         <div className="left-section">
-          <LoginButton />
+        <Logo></Logo>
         </div>
-        <Logo />
+        <div className="container-right">
         <Navigation />
+        <LoginButton />
+        </div>
       </div>
     </header>
   );

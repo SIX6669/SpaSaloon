@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import Input from './input';
 import Boton from './boton.jsx';
+import { useAuth } from '../PerfilUsuario/AuthContexts.jsx';
 import '../../styles/formularioRegistro.css';
 import { X } from 'lucide-react';
 
 const Formulario = ({ onClose }) => {
+  const { login } = useAuth();
   const [formMode, setFormMode] = useState('login'); // 'login', 'register', 'recovery', 'changePassword'
   const [formData, setFormData] = useState({
     email: '',
@@ -35,10 +37,15 @@ const Formulario = ({ onClose }) => {
     
     if (formMode === 'login') {
       console.log('Iniciando sesión con:', formData.email, formData.password);
-      // aca la logica de inicio
+      // Llamar a la función login del contexto
+      login({ email: formData.email });
+      // Cerrar el formulario después de iniciar sesión
+      onClose();
     } else if (formMode === 'register') {
       console.log('Registrando usuario:', formData);
-      // aca la de registro
+      // Aquí podrías hacer el registro y luego iniciar sesión automáticamente
+      login({ email: formData.email });
+      onClose();
     } else if (formMode === 'recovery') {
       // Mostrar alerta de correo enviado
       alert(`Se ha enviado un correo para la recuperación de clave a: ${formData.email}`);

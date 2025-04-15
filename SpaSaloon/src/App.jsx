@@ -1,14 +1,5 @@
 import React from 'react';
-
 import './App.css';
-/* componentes para agregar/importar
-import Button from './componentes/buttons.jsx';
-
-import Input from './componentes/Formularios/input.jsx';
-import Etiqueta from './componentes/Formularios/etiquetas.jsx';
-import Boton from './componentes/Formularios/boton.jsx';
-import Formulario from './componentes/Formularios/formulario.jsx';
-*/
 import Hero from './componentes/Body/hero.jsx';
 import Servicios from './componentes/Body/servicios.jsx';
 import SobreNosotros from './componentes/Body/sobre-nosotros.jsx';
@@ -16,31 +7,48 @@ import Contacto from './componentes/Body/contacto.jsx';
 import Header from './componentes/Header/header.jsx';
 import Galeria from './componentes/Body/galeria.jsx';
 import PerfilUsuario from './componentes/PerfilUsuario/PerfilUsuario.jsx';
+import { AuthProvider } from './componentes/PerfilUsuario/AuthContexts.jsx';
+import { useAuth } from './componentes/PerfilUsuario/AuthContexts.jsx';
 
+// Componente contenedor que usa el contexto de autenticación
+const AppContent = () => {
+  const { isAuthenticated } = useAuth();
 
-
-function App() {
   return (
     <>
       <Header />
       <div className="main-content">
         <section className="section hero-section" id="hero">
-          <Hero></Hero>
+          <Hero />
         </section>
         <section className="section section-masajes" id="sobre-nosotros">
-          <SobreNosotros></SobreNosotros>
+          <SobreNosotros />
         </section>
         <section className="section section-servicios" id="servicios">
-          <Servicios></Servicios>
+          <Servicios />
         </section>
-        <section className = "section" id="fotos">
-          <Galeria></Galeria>
+        <section className="section" id="fotos">
+          <Galeria />
         </section>
         <section className="section section-contacto" id="contacto">
-          <Contacto></Contacto>
+          <Contacto />
         </section>
+        {isAuthenticated && (
+          <section className="section section-perfil" id="perfil">
+            <PerfilUsuario />
+          </section>
+        )}
       </div>
     </>
   );
+};
+
+function App() {
+  return (
+    <AuthProvider>
+      <AppContent />
+    </AuthProvider>
+  );
 }
+
 export default App;
