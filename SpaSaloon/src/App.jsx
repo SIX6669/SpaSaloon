@@ -22,8 +22,22 @@ import PerfilUsuario from './componentes/PerfilUsuario/PerfilUsuario.jsx';
 function App() {
   return (
     <>
+      <Header />
       <div className="main-content">
-        <PerfilUsuario></PerfilUsuario>
+        <section className="section hero-section" id="hero">
+        </section>
+        <section className="section section-masajes" id="sobre-nosotros">
+          <SobreNosotros></SobreNosotros>
+        </section>
+        <section className="section section-servicios" id="servicios">
+          <Servicios></Servicios>
+        </section>
+        <section className = "section" id="fotos">
+          <Galeria></Galeria>
+        </section>
+        <section className="section section-contacto" id="contacto">
+          <Contacto></Contacto>
+        </section>
       </div>
     </>
   );
