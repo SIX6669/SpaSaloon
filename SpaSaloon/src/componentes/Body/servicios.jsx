@@ -115,13 +115,13 @@ const Servicios = () => {
     {
       title: 'Hidromasajes',
       imageSrc: hidromasajesImg,
-      description: 'Sesiones en bañeras o piscinas con chorros de agua a presión que proporcionan un masaje relajante en todo el cuerpo, aliviando la tensión muscular y promoviendo la circulación.',
+      descripcion: 'Sesiones en bañeras o piscinas con chorros de agua a presión que proporcionan un masaje relajante en todo el cuerpo, aliviando la tensión muscular y promoviendo la circulación.',
       precio: 8000
     },
     {
       title: 'Yoga',
       imageSrc: yogaImg,
-      description: 'Clases grupales que combinan posturas físicas (asanas), técnicas de respiración (pranayama) y meditación para mejorar la flexibilidad, la fuerza, el equilibrio y la relajación mental.',
+      descripcion: 'Clases grupales que combinan posturas físicas (asanas), técnicas de respiración (pranayama) y meditación para mejorar la flexibilidad, la fuerza, el equilibrio y la relajación mental.',
       precio: 20000
     },
   ];

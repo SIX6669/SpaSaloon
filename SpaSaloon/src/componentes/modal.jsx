@@ -62,8 +62,8 @@ const Modal = ({ servicio, onClose }) => {
                 ))}
               </ul>
             ) : (
-              <div className="modal-opcion-detalles">
-                <p><strong>Descripción:</strong> {servicio.description}</p>
+              <div className="modal-description">
+                <p><strong>Descripción:</strong> {servicio.descripcion}</p>
                 <p><strong>Precio:</strong> ${servicio.precio}</p>
               </div>
             )}
