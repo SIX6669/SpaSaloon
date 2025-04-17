@@ -1,37 +1,41 @@
-import React, { useState, useEffect } from 'react';
-import '../styles/modal.css';
-import '../styles/modalReserva.css';
-import CalendarioCustom from './calendar.jsx';
+import React, { useState, useEffect } from "react";
+import "../styles/modal.css";
+import "../styles/modalReserva.css";
+import CalendarioCustom from "./calendar.jsx";
 
-const ModalReserva = ({ servicio, opcionSeleccionada, onClose, onReservaConfirmada }) => {
-  const [fecha, setFecha] = useState('');
-  const [hora, setHora] = useState('');
-  const [profesional, setProfesional] = useState('');
-  const [paso, setPaso] = useState(1); // Para manejar los pasos del proceso de reserva
+const ModalReserva = ({
+  servicio,
+  opcionSeleccionada,
+  onClose,
+  onReservaConfirmada,
+}) => {
+  const [fecha, setFecha] = useState("");
+  const [hora, setHora] = useState("");
+  const [profesional, setProfesional] = useState("");
+  const [paso, setPaso] = useState(1); 
   const [diaSeleccionado, setDiaSeleccionado] = useState(null);
 
-  // Lista de profesionales (esto podría venir de una API en una implementación real)
   const profesionales = [
     { id: 1, nombre: "Ana García", especialidad: "Masajista" },
     { id: 2, nombre: "Carlos Rodríguez", especialidad: "Terapeuta facial" },
     { id: 3, nombre: "Lucía Fernández", especialidad: "Esteticista" },
-    { id: 4, nombre: "Miguel López", especialidad: "Instructor de yoga" }
+    { id: 4, nombre: "Miguel López", especialidad: "Instructor de yoga" },
   ];
 
-  // Determinar qué profesionales mostrar basado en el servicio seleccionado
-  const profesionalesFiltrados = profesionales.filter(prof => {
-    if (servicio.title === 'Masajes') return prof.especialidad === "Masajista";
-    if (servicio.title === 'Tratamientos faciales') return prof.especialidad === "Terapeuta facial";
-    if (servicio.title === 'Belleza') return prof.especialidad === "Esteticista";
-    if (servicio.title === 'Yoga') return prof.especialidad === "Instructor de yoga";
-    return true; // Para otros servicios mostrar todos
+  const profesionalesFiltrados = profesionales.filter((prof) => {
+    if (servicio.title === "Masajes") return prof.especialidad === "Masajista";
+    if (servicio.title === "Tratamientos faciales")
+      return prof.especialidad === "Terapeuta facial";
+    if (servicio.title === "Belleza")
+      return prof.especialidad === "Esteticista";
+    if (servicio.title === "Yoga")
+      return prof.especialidad === "Instructor de yoga";
+    return true;
   });
 
-  // Función para recibir la fecha y hora del componente CalendarioCustom
   const handleFechaHoraSeleccionada = (nuevaFecha, nuevaHora) => {
     if (nuevaFecha) {
-      // Convertir el objeto Date a string en formato YYYY-MM-DD
-      const fechaStr = nuevaFecha.toISOString().split('T')[0];
+      const fechaStr = nuevaFecha.toISOString().split("T")[0];
       setFecha(fechaStr);
       setDiaSeleccionado(nuevaFecha);
     }
@@ -44,60 +48,63 @@ const ModalReserva = ({ servicio, opcionSeleccionada, onClose, onReservaConfirma
   const handleSubmit = (e) => {
     e.preventDefault();
     if (paso === 1) {
-      // Validar fecha y hora antes de avanzar
       if (!fecha || !hora) {
         alert("Por favor selecciona fecha y hora para continuar.");
         return;
       }
       setPaso(2);
     } else {
-      // Validar profesional antes de confirmar
       if (!profesional) {
         alert("Por favor selecciona un profesional.");
         return;
       }
 
-      // Procesar la reserva
       const detallesReserva = {
         servicio: servicio.title,
         opcion: opcionSeleccionada ? opcionSeleccionada.nombre : null,
         fecha,
         hora,
-        profesional
+        profesional,
       };
 
-      // Llamar a la función callback con los detalles de la reserva
       if (onReservaConfirmada) {
         onReservaConfirmada(detallesReserva);
       }
 
-      // Mostrar confirmación y cerrar el modal después de unos segundos
-      alert(`Tu reserva para ${servicio.title} ${opcionSeleccionada ? `- ${opcionSeleccionada.nombre}` : ''} ha sido confirmada para el ${formatearFecha(fecha)} a las ${hora} con ${profesional}.`);
+      alert(
+        `Tu reserva para ${servicio.title} ${opcionSeleccionada ? `- ${opcionSeleccionada.nombre}` : ""
+        } ha sido confirmada para el ${formatearFecha(
+          fecha
+        )} a las ${hora} con ${profesional}.`
+      );
       setTimeout(onClose, 1000);
     }
   };
 
-  // Formatear fecha para mostrar en formato más amigable
   const formatearFecha = (fechaString) => {
-    const [año, mes, dia] = fechaString.split('-');
+    const [año, mes, dia] = fechaString.split("-");
     const fecha = new Date(parseInt(año), parseInt(mes) - 1, parseInt(dia));
-    return fecha.toLocaleDateString('es-ES', {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
+    return fecha.toLocaleDateString("es-ES", {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
     });
   };
 
-  // Función para volver al paso anterior
   const volverPaso = () => {
     setPaso(1);
   };
 
   return (
     <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content modal-reserva" onClick={(e) => e.stopPropagation()}>
-        <button className="modal-close-btn" onClick={onClose}>✕</button>
+      <div
+        className="modal-content modal-reserva"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button className="modal-close-btn" onClick={onClose}>
+          ✕
+        </button>
 
         <div className="modal-body">
           <div className="modal-image-container">
@@ -111,10 +118,15 @@ const ModalReserva = ({ servicio, opcionSeleccionada, onClose, onReservaConfirma
               <div className="modal-servicio-info">
                 <h3>{servicio.title}</h3>
                 {opcionSeleccionada && (
-                  <p className="modal-opcion-elegida">{opcionSeleccionada.nombre}</p>
+                  <p className="modal-opcion-elegida">
+                    {opcionSeleccionada.nombre}
+                  </p>
                 )}
                 <p className="modal-precio">
-                  ${opcionSeleccionada ? opcionSeleccionada.precio : servicio.precio}
+                  $
+                  {opcionSeleccionada
+                    ? opcionSeleccionada.precio
+                    : servicio.precio}
                 </p>
               </div>
             </div>
@@ -122,15 +134,18 @@ const ModalReserva = ({ servicio, opcionSeleccionada, onClose, onReservaConfirma
 
           <div className="modal-details modal-reserva-details">
             <div className="modal-pasos-indicador">
-              <div className={`paso ${paso >= 1 ? 'activo' : ''}`}>1. Fecha y Hora</div>
+              <div className={`paso ${paso >= 1 ? "activo" : ""}`}>
+                1. Fecha y Hora
+              </div>
               <div className="paso-separador"></div>
-              <div className={`paso ${paso >= 2 ? 'activo' : ''}`}>2. Profesional</div>
+              <div className={`paso ${paso >= 2 ? "activo" : ""}`}>
+                2. Profesional
+              </div>
             </div>
 
             <form onSubmit={handleSubmit} className="modal-reserva-form">
               {paso === 1 ? (
                 <div className="modal-paso modal-paso-1">
-                  {/* Reemplazamos los controles de fecha con el componente CalendarioCustom */}
                   <div className="calendario-container">
                     <CalendarioPersonalizado
                       onSeleccionarFechaHora={handleFechaHoraSeleccionada}
@@ -147,7 +162,8 @@ const ModalReserva = ({ servicio, opcionSeleccionada, onClose, onReservaConfirma
                       {profesionalesFiltrados.map((prof) => (
                         <div
                           key={prof.id}
-                          className={`profesional-card ${profesional === prof.nombre ? 'seleccionado' : ''}`}
+                          className={`profesional-card ${profesional === prof.nombre ? "seleccionado" : ""
+                            }`}
                           onClick={() => setProfesional(prof.nombre)}
                         >
                           <div className="profesional-avatar">
@@ -164,12 +180,20 @@ const ModalReserva = ({ servicio, opcionSeleccionada, onClose, onReservaConfirma
 
                   <div className="resumen-reserva">
                     <h4>Resumen de la reserva</h4>
-                    <p><strong>Servicio:</strong> {servicio.title}</p>
+                    <p>
+                      <strong>Servicio:</strong> {servicio.title}
+                    </p>
                     {opcionSeleccionada && (
-                      <p><strong>Opción:</strong> {opcionSeleccionada.nombre}</p>
+                      <p>
+                        <strong>Opción:</strong> {opcionSeleccionada.nombre}
+                      </p>
                     )}
-                    <p><strong>Fecha:</strong> {formatearFecha(fecha)}</p>
-                    <p><strong>Hora:</strong> {hora}</p>
+                    <p>
+                      <strong>Fecha:</strong> {formatearFecha(fecha)}
+                    </p>
+                    <p>
+                      <strong>Hora:</strong> {hora}
+                    </p>
                   </div>
                 </div>
               )}
@@ -187,14 +211,36 @@ const ModalReserva = ({ servicio, opcionSeleccionada, onClose, onReservaConfirma
                 <button type="submit" className="modal-reservar-btn">
                   {paso === 1 ? (
                     <>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '8px' }}>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        style={{ marginRight: "8px" }}
+                      >
                         <polyline points="9 18 15 12 9 6"></polyline>
                       </svg>
                       Continuar
                     </>
                   ) : (
                     <>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '8px' }}>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        style={{ marginRight: "8px" }}
+                      >
                         <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                         <polyline points="22 4 12 14.01 9 11.01"></polyline>
                       </svg>
@@ -211,13 +257,18 @@ const ModalReserva = ({ servicio, opcionSeleccionada, onClose, onReservaConfirma
   );
 };
 
-// Componente adaptado de calendario para usarlo en el modal de reserva
-const CalendarioPersonalizado = ({ onSeleccionarFechaHora, fechaSeleccionada, horaSeleccionada }) => {
+const CalendarioPersonalizado = ({
+  onSeleccionarFechaHora,
+  fechaSeleccionada,
+  horaSeleccionada,
+}) => {
   const today = new Date();
   const [fechaActual, setFechaActual] = useState(
     new Date(today.getFullYear(), today.getMonth(), 1)
   );
-  const [diaSeleccionado, setDiaSeleccionado] = useState(fechaSeleccionada || null);
+  const [diaSeleccionado, setDiaSeleccionado] = useState(
+    fechaSeleccionada || null
+  );
   const [horaElegida, setHoraElegida] = useState(horaSeleccionada || null);
 
   const obtenerDiasDelMes = (fecha) => {
@@ -239,17 +290,13 @@ const CalendarioPersonalizado = ({ onSeleccionarFechaHora, fechaSeleccionada, ho
     setFechaActual(new Date(nuevoMes.getFullYear(), nuevoMes.getMonth(), 1));
   };
 
-  // Cuando el usuario seleccione un día
   const seleccionarDia = (dia) => {
     setDiaSeleccionado(dia);
-    // Notificar al componente padre sobre el cambio
     onSeleccionarFechaHora(dia, horaElegida);
   };
 
-  // Cuando el usuario seleccione una hora
   const seleccionarHora = (hora) => {
     setHoraElegida(hora);
-    // Notificar al componente padre sobre el cambio
     onSeleccionarFechaHora(diaSeleccionado, hora);
   };
 
@@ -272,17 +319,21 @@ const CalendarioPersonalizado = ({ onSeleccionarFechaHora, fechaSeleccionada, ho
       </h4>
       <br />
       <div className="encabezado">
-        <button type="button" onClick={() => cambiarMes(-1)}>←</button>
+        <button type="button" onClick={() => cambiarMes(-1)}>
+          ←
+        </button>
         <h5>{nombreMes.charAt(0).toUpperCase() + nombreMes.slice(1)}</h5>
-        <button type="button" onClick={() => cambiarMes(1)}>→</button>
+        <button type="button" onClick={() => cambiarMes(1)}>
+          →
+        </button>
       </div>
 
       <div className="dias-scroll">
         {dias.map((dia, i) => (
           <div
             className={`dia ${diaSeleccionado?.toDateString() === dia.toDateString()
-              ? "seleccionado"
-              : ""
+                ? "seleccionado"
+                : ""
               }`}
             key={i}
             onClick={() => seleccionarDia(dia)}
@@ -307,7 +358,8 @@ const CalendarioPersonalizado = ({ onSeleccionarFechaHora, fechaSeleccionada, ho
                   <button
                     type="button"
                     key={i}
-                    className={`horario-btn ${horaElegida === hora ? "seleccionado" : ""}`}
+                    className={`horario-btn ${horaElegida === hora ? "seleccionado" : ""
+                      }`}
                     onClick={() => seleccionarHora(hora)}
                   >
                     {hora}
