@@ -16,8 +16,10 @@
 .modal-content {
   background: #fff;
   border-radius: 16px;
-  width: 90%;
-  max-width: 900px;
+  width: 95%;
+  max-width: 1500px; /* Aumentado de 900px a 1100px */
+  min-width: 1150px; /* Aumentado de 850px a 950px */
+  height: 700px; /* Aumentado de 600px a 650px */
   display: flex;
   flex-direction: column;
   position: relative;
@@ -54,6 +56,7 @@
   z-index: 10;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   transition: all 0.2s ease;
+  color: #000; /* Color negro para la cruz */
 }
 
 .modal-close-btn:hover {
@@ -68,7 +71,7 @@
 }
 
 .modal-image-container {
-  flex: 1;
+  width: 45%; /* Ajustado para darle más espacio al contenido */
   overflow: hidden;
   position: relative;
 }
@@ -95,12 +98,12 @@
 }
 
 .modal-details {
-  flex: 1;
+  width: 55%; /* Ajustado para darle más espacio al contenido */
   padding: 2.5rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   background: #f9f9f9;
+  overflow-y: auto; /* Mantener el scroll solo por si acaso */
 }
 
 .modal-title {
@@ -114,10 +117,15 @@
   display: inline-block;
 }
 
+.modal-content-area {
+  flex-grow: 1;
+  margin-bottom: 1.5rem;
+}
+
 .modal-options-list {
   list-style: none;
   padding-left: 0;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   color: #444;
 }
 
@@ -146,19 +154,26 @@
   transform: translateX(5px);
 }
 
+/* Estilos para servicios grupales - verde agua con texto blanco */
 .modal-description {
   font-size: 1.1rem;
   line-height: 1.6;
-  margin-bottom: 2rem;
-  color: #555;
-  background-color: #f1f1f1;
+  color: white; /* Texto blanco */
+  background-color: #009688; /* Verde agua */
   padding: 1.2rem;
   border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 5px 15px rgba(0, 150, 136, 0.3);
+  margin-bottom: 1rem;
 }
 
 .modal-description p {
   margin-bottom: 0.8rem;
+}
+
+/* Cambiar el color de los elementos strong dentro de descripciones */
+.modal-description p strong {
+  color: white; /* Texto blanco para los strong también */
+  font-weight: 600;
 }
 
 .modal-opcion-detalles {
@@ -181,8 +196,13 @@
   to { opacity: 1; }
 }
 
+.modal-button-container {
+  text-align: center;
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
 .modal-reservar-btn {
-  align-self: flex-start;
   padding: 0.9rem 1.8rem;
   background-color: #009688;
   color: white;
@@ -193,9 +213,8 @@
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 4px 10px rgba(0, 150, 136, 0.3);
-  margin-top: 1rem;
   letter-spacing: 0.5px;
-  display: flex;
+  display: inline-flex;
   align-items: center;
 }
 
@@ -211,16 +230,23 @@
 }
 
 /* Responsive ajustments */
-@media (max-width: 768px) {
+@media (max-width: 992px) {
+  .modal-content {
+    min-width: 90%;
+    height: 85vh;
+  }
+  
   .modal-body {
     flex-direction: column;
   }
   
   .modal-image-container {
-    height: 200px;
+    width: 100%;
+    height: 250px;
   }
   
   .modal-details {
+    width: 100%;
     padding: 1.5rem;
   }
   
@@ -229,16 +255,21 @@
   }
 }
 
-/* Add a subtle hover effect to price information */
-.modal-description p strong,
-.modal-opcion-detalles p strong {
-  color: #009688;
+/* Estilos de precio para servicios grupales */
+.modal-description p:last-child {
+  font-weight: 500;
+  color: white; /* Precio en blanco para los servicios grupales */
+  font-size: 1.1rem;
 }
 
-/* Price styling */
-.modal-description p:last-child,
+/* Estilos de precio para opciones de servicios individuales */
 .modal-opcion-detalles p:last-child {
   font-weight: 500;
-  color: #009688;
+  color: rgba(255, 255, 255, 0.9);
   font-size: 1.1rem;
+}
+
+.modal-subtitle {
+  color: #000;
+  font-weight: lighter;
 }
