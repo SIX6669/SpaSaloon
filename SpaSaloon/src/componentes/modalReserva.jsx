@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/modal.css';
-import '../styles/modalReserva.css'; // Crearemos este archivo con estilos específicos
+import '../styles/modalReserva.css';
+import CalendarioCustom from './calendar.jsx';
 
 const ModalReserva = ({ servicio, opcionSeleccionada, onClose, onReservaConfirmada }) => {
   const [fecha, setFecha] = useState('');
   const [hora, setHora] = useState('');
   const [profesional, setProfesional] = useState('');
   const [paso, setPaso] = useState(1); // Para manejar los pasos del proceso de reserva
-  
+  const [diaSeleccionado, setDiaSeleccionado] = useState(null);
+
   // Lista de profesionales (esto podría venir de una API en una implementación real)
   const profesionales = [
     { id: 1, nombre: "Ana García", especialidad: "Masajista" },
@@ -15,13 +17,7 @@ const ModalReserva = ({ servicio, opcionSeleccionada, onClose, onReservaConfirma
     { id: 3, nombre: "Lucía Fernández", especialidad: "Esteticista" },
     { id: 4, nombre: "Miguel López", especialidad: "Instructor de yoga" }
   ];
-  
-  // Horarios disponibles (también podría ser dinámico según disponibilidad real)
-  const horariosDisponibles = [
-    "09:00", "10:00", "11:00", "12:00", 
-    "14:00", "15:00", "16:00", "17:00", "18:00"
-  ];
-  
+
   // Determinar qué profesionales mostrar basado en el servicio seleccionado
   const profesionalesFiltrados = profesionales.filter(prof => {
     if (servicio.title === 'Masajes') return prof.especialidad === "Masajista";
@@ -30,6 +26,20 @@ const ModalReserva = ({ servicio, opcionSeleccionada, onClose, onReservaConfirma
     if (servicio.title === 'Yoga') return prof.especialidad === "Instructor de yoga";
     return true; // Para otros servicios mostrar todos
   });
+
+  // Función para recibir la fecha y hora del componente CalendarioCustom
+  const handleFechaHoraSeleccionada = (nuevaFecha, nuevaHora) => {
+    if (nuevaFecha) {
+      // Convertir el objeto Date a string en formato YYYY-MM-DD
+      const fechaStr = nuevaFecha.toISOString().split('T')[0];
+      setFecha(fechaStr);
+      setDiaSeleccionado(nuevaFecha);
+    }
+
+    if (nuevaHora) {
+      setHora(nuevaHora);
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -46,7 +56,7 @@ const ModalReserva = ({ servicio, opcionSeleccionada, onClose, onReservaConfirma
         alert("Por favor selecciona un profesional.");
         return;
       }
-      
+
       // Procesar la reserva
       const detallesReserva = {
         servicio: servicio.title,
@@ -55,21 +65,22 @@ const ModalReserva = ({ servicio, opcionSeleccionada, onClose, onReservaConfirma
         hora,
         profesional
       };
-      
+
       // Llamar a la función callback con los detalles de la reserva
       if (onReservaConfirmada) {
         onReservaConfirmada(detallesReserva);
       }
-      
+
       // Mostrar confirmación y cerrar el modal después de unos segundos
       alert(`Tu reserva para ${servicio.title} ${opcionSeleccionada ? `- ${opcionSeleccionada.nombre}` : ''} ha sido confirmada para el ${formatearFecha(fecha)} a las ${hora} con ${profesional}.`);
       setTimeout(onClose, 1000);
     }
   };
-  
+
   // Formatear fecha para mostrar en formato más amigable
   const formatearFecha = (fechaString) => {
-    const fecha = new Date(fechaString);
+    const [año, mes, dia] = fechaString.split('-');
+    const fecha = new Date(parseInt(año), parseInt(mes) - 1, parseInt(dia));
     return fecha.toLocaleDateString('es-ES', {
       weekday: 'long',
       year: 'numeric',
@@ -77,10 +88,7 @@ const ModalReserva = ({ servicio, opcionSeleccionada, onClose, onReservaConfirma
       day: 'numeric'
     });
   };
-  
-  // Determinar fecha mínima (hoy) para el calendario
-  const hoy = new Date().toISOString().split('T')[0];
-  
+
   // Función para volver al paso anterior
   const volverPaso = () => {
     setPaso(1);
@@ -90,7 +98,7 @@ const ModalReserva = ({ servicio, opcionSeleccionada, onClose, onReservaConfirma
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content modal-reserva" onClick={(e) => e.stopPropagation()}>
         <button className="modal-close-btn" onClick={onClose}>✕</button>
-        
+
         <div className="modal-body">
           <div className="modal-image-container">
             <img
@@ -118,39 +126,18 @@ const ModalReserva = ({ servicio, opcionSeleccionada, onClose, onReservaConfirma
               <div className="paso-separador"></div>
               <div className={`paso ${paso >= 2 ? 'activo' : ''}`}>2. Profesional</div>
             </div>
-            
+
             <form onSubmit={handleSubmit} className="modal-reserva-form">
               {paso === 1 ? (
                 <div className="modal-paso modal-paso-1">
-                  <div className="form-group">
-                    <label htmlFor="fecha">Selecciona una fecha:</label>
-                    <input 
-                      type="date" 
-                      id="fecha" 
-                      min={hoy}
-                      value={fecha}
-                      onChange={(e) => setFecha(e.target.value)}
-                      className="form-control"
+                  {/* Reemplazamos los controles de fecha con el componente CalendarioCustom */}
+                  <div className="calendario-container">
+                    <CalendarioPersonalizado
+                      onSeleccionarFechaHora={handleFechaHoraSeleccionada}
+                      fechaSeleccionada={diaSeleccionado}
+                      horaSeleccionada={hora}
                     />
                   </div>
-                  
-                  {fecha && (
-                    <div className="form-group">
-                      <label>Horarios disponibles:</label>
-                      <div className="horarios-grid">
-                        {horariosDisponibles.map((h) => (
-                          <button
-                            type="button"
-                            key={h}
-                            className={`horario-btn ${hora === h ? 'seleccionado' : ''}`}
-                            onClick={() => setHora(h)}
-                          >
-                            {h}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  )}
                 </div>
               ) : (
                 <div className="modal-paso modal-paso-2">
@@ -158,7 +145,7 @@ const ModalReserva = ({ servicio, opcionSeleccionada, onClose, onReservaConfirma
                     <label>Selecciona un profesional:</label>
                     <div className="profesionales-grid">
                       {profesionalesFiltrados.map((prof) => (
-                        <div 
+                        <div
                           key={prof.id}
                           className={`profesional-card ${profesional === prof.nombre ? 'seleccionado' : ''}`}
                           onClick={() => setProfesional(prof.nombre)}
@@ -174,7 +161,7 @@ const ModalReserva = ({ servicio, opcionSeleccionada, onClose, onReservaConfirma
                       ))}
                     </div>
                   </div>
-                  
+
                   <div className="resumen-reserva">
                     <h4>Resumen de la reserva</h4>
                     <p><strong>Servicio:</strong> {servicio.title}</p>
@@ -186,11 +173,11 @@ const ModalReserva = ({ servicio, opcionSeleccionada, onClose, onReservaConfirma
                   </div>
                 </div>
               )}
-              
+
               <div className="modal-button-container">
                 {paso === 2 && (
-                  <button 
-                    type="button" 
+                  <button
+                    type="button"
                     className="modal-volver-btn"
                     onClick={volverPaso}
                   >
@@ -220,6 +207,117 @@ const ModalReserva = ({ servicio, opcionSeleccionada, onClose, onReservaConfirma
           </div>
         </div>
       </div>
+    </div>
+  );
+};
+
+// Componente adaptado de calendario para usarlo en el modal de reserva
+const CalendarioPersonalizado = ({ onSeleccionarFechaHora, fechaSeleccionada, horaSeleccionada }) => {
+  const today = new Date();
+  const [fechaActual, setFechaActual] = useState(
+    new Date(today.getFullYear(), today.getMonth(), 1)
+  );
+  const [diaSeleccionado, setDiaSeleccionado] = useState(fechaSeleccionada || null);
+  const [horaElegida, setHoraElegida] = useState(horaSeleccionada || null);
+
+  const obtenerDiasDelMes = (fecha) => {
+    const dias = [];
+    const año = fecha.getFullYear();
+    const mes = fecha.getMonth();
+    const totalDias = new Date(año, mes + 1, 0).getDate();
+
+    for (let i = 1; i <= totalDias; i++) {
+      dias.push(new Date(año, mes, i));
+    }
+
+    return dias;
+  };
+
+  const cambiarMes = (offset) => {
+    const nuevoMes = new Date(fechaActual);
+    nuevoMes.setMonth(fechaActual.getMonth() + offset);
+    setFechaActual(new Date(nuevoMes.getFullYear(), nuevoMes.getMonth(), 1));
+  };
+
+  // Cuando el usuario seleccione un día
+  const seleccionarDia = (dia) => {
+    setDiaSeleccionado(dia);
+    // Notificar al componente padre sobre el cambio
+    onSeleccionarFechaHora(dia, horaElegida);
+  };
+
+  // Cuando el usuario seleccione una hora
+  const seleccionarHora = (hora) => {
+    setHoraElegida(hora);
+    // Notificar al componente padre sobre el cambio
+    onSeleccionarFechaHora(diaSeleccionado, hora);
+  };
+
+  const dias = obtenerDiasDelMes(fechaActual);
+  const nombreMes = fechaActual.toLocaleString("es-ES", {
+    month: "long",
+    year: "numeric",
+  });
+
+  const horarios = {
+    mañana: ["08:00", "09:00", "10:00", "11:00", "12:00"],
+    tarde: ["13:00", "14:00", "15:00", "16:00", "17:00", "18:00"],
+    noche: ["19:00", "20:00", "21:00"],
+  };
+
+  return (
+    <div className="calendario-custom">
+      <h4 className="titulo-seleccion">
+        Seleccioná fecha y hora de tu servicio
+      </h4>
+      <br />
+      <div className="encabezado">
+        <button type="button" onClick={() => cambiarMes(-1)}>←</button>
+        <h5>{nombreMes.charAt(0).toUpperCase() + nombreMes.slice(1)}</h5>
+        <button type="button" onClick={() => cambiarMes(1)}>→</button>
+      </div>
+
+      <div className="dias-scroll">
+        {dias.map((dia, i) => (
+          <div
+            className={`dia ${diaSeleccionado?.toDateString() === dia.toDateString()
+              ? "seleccionado"
+              : ""
+              }`}
+            key={i}
+            onClick={() => seleccionarDia(dia)}
+          >
+            {dia.getDate()}
+          </div>
+        ))}
+      </div>
+      <br />
+      {diaSeleccionado && (
+        <div className="horarios">
+          <h5>
+            Horarios disponibles para el{" "}
+            {diaSeleccionado.toLocaleDateString("es-ES")}:
+          </h5>
+
+          {Object.entries(horarios).map(([turno, horas]) => (
+            <div className="bloque-horario" key={turno}>
+              <h6>{turno.charAt(0).toUpperCase() + turno.slice(1)}</h6>
+              <div className="horarios-lista">
+                {horas.map((hora, i) => (
+                  <button
+                    type="button"
+                    key={i}
+                    className={`horario-btn ${horaElegida === hora ? "seleccionado" : ""}`}
+                    onClick={() => seleccionarHora(hora)}
+                  >
+                    {hora}
+                  </button>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

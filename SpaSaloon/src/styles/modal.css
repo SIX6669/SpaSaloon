@@ -1,3 +1,5 @@
+/* Estilos generales */
+
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -17,9 +19,9 @@
   background: #fff;
   border-radius: 16px;
   width: 95%;
-  max-width: 1500px; /* Aumentado de 900px a 1100px */
-  min-width: 1150px; /* Aumentado de 850px a 950px */
-  height: 700px; /* Aumentado de 600px a 650px */
+  max-width: 1500px;
+  min-width: 1150px;
+  height: 700px;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -33,6 +35,7 @@
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -56,7 +59,7 @@
   z-index: 10;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   transition: all 0.2s ease;
-  color: #000; /* Color negro para la cruz */
+  color: #000;
 }
 
 .modal-close-btn:hover {
@@ -71,7 +74,7 @@
 }
 
 .modal-image-container {
-  width: 45%; /* Ajustado para darle más espacio al contenido */
+  width: 45%;
   overflow: hidden;
   position: relative;
 }
@@ -98,12 +101,12 @@
 }
 
 .modal-details {
-  width: 55%; /* Ajustado para darle más espacio al contenido */
+  width: 55%;
   padding: 2.5rem;
   display: flex;
   flex-direction: column;
   background: #f9f9f9;
-  overflow-y: auto; /* Mantener el scroll solo por si acaso */
+  overflow-y: auto;
 }
 
 .modal-title {
@@ -115,6 +118,11 @@
   border-bottom: 2px solid #009688;
   padding-bottom: 0.5rem;
   display: inline-block;
+}
+
+.modal-subtitle {
+  color: #000;
+  font-weight: lighter;
 }
 
 .modal-content-area {
@@ -154,12 +162,11 @@
   transform: translateX(5px);
 }
 
-/* Estilos para servicios grupales - verde agua con texto blanco */
 .modal-description {
   font-size: 1.1rem;
   line-height: 1.6;
-  color: white; /* Texto blanco */
-  background-color: #009688; /* Verde agua */
+  color: white;
+  background-color: #009688;
   padding: 1.2rem;
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 150, 136, 0.3);
@@ -170,10 +177,15 @@
   margin-bottom: 0.8rem;
 }
 
-/* Cambiar el color de los elementos strong dentro de descripciones */
 .modal-description p strong {
-  color: white; /* Texto blanco para los strong también */
+  color: white;
   font-weight: 600;
+}
+
+.modal-description p:last-child {
+  font-weight: 500;
+  color: white;
+  font-size: 1.1rem;
 }
 
 .modal-opcion-detalles {
@@ -192,8 +204,19 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-opcion-detalles p:last-child {
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.1rem;
 }
 
 .modal-button-container {
@@ -229,47 +252,27 @@
   box-shadow: 0 2px 8px rgba(0, 150, 136, 0.4);
 }
 
-/* Responsive ajustments */
 @media (max-width: 992px) {
   .modal-content {
     min-width: 90%;
     height: 85vh;
   }
-  
+
   .modal-body {
     flex-direction: column;
   }
-  
+
   .modal-image-container {
     width: 100%;
     height: 250px;
   }
-  
+
   .modal-details {
     width: 100%;
     padding: 1.5rem;
   }
-  
+
   .modal-title {
     font-size: 1.8rem;
   }
-}
-
-/* Estilos de precio para servicios grupales */
-.modal-description p:last-child {
-  font-weight: 500;
-  color: white; /* Precio en blanco para los servicios grupales */
-  font-size: 1.1rem;
-}
-
-/* Estilos de precio para opciones de servicios individuales */
-.modal-opcion-detalles p:last-child {
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 1.1rem;
-}
-
-.modal-subtitle {
-  color: #000;
-  font-weight: lighter;
 }

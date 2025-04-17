@@ -2,6 +2,11 @@
   max-width: 600px;
   margin: auto;
   font-family: 'Kanit', sans-serif;
+  background-color: #f9f9f9;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  color: #000;
 }
 
 .encabezado {
@@ -11,12 +16,52 @@
   margin-bottom: 1rem;
 }
 
+.encabezado h5 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #000;
+  font-weight: 500;
+}
+
+.encabezado button {
+  background: #e0e0e0;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.encabezado button:hover {
+  background: #d0d0d0;
+}
+
 .dias-scroll {
   display: flex;
   overflow-x: auto;
   gap: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding-bottom: 0.8rem;
   border-bottom: 1px solid #ccc;
+  scrollbar-width: thin;
+  scrollbar-color: #009688 #f0f0f0;
+}
+
+.dias-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+
+.dias-scroll::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border-radius: 10px;
+}
+
+.dias-scroll::-webkit-scrollbar-thumb {
+  background-color: #009688;
+  border-radius: 10px;
 }
 
 .dia {
@@ -26,23 +71,40 @@
   background-color: #f0f0f0;
   border-radius: 10px;
   cursor: pointer;
+  transition: all 0.2s ease;
+  color: #000;
+}
+
+.dia:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-2px);
 }
 
 .dia.seleccionado {
-  background-color: #a0c4ff;
+  background-color: #009688;
+  color: white;
   font-weight: bold;
+  box-shadow: 0 2px 5px rgba(0, 150, 136, 0.3);
 }
 
 .horarios {
   margin-top: 1rem;
 }
 
-.bloque-horario {
+.horarios h5 {
+  color: #000;
+  font-size: 1.1rem;
   margin-bottom: 1rem;
 }
 
 .horarios h6 {
   margin-bottom: 0.5rem;
+  color: #000;
+  font-size: 1rem;
+}
+
+.bloque-horario {
+  margin-bottom: 1rem;
 }
 
 .horarios-lista {
@@ -57,8 +119,18 @@
   padding: 0.4rem 1rem;
   border-radius: 6px;
   cursor: pointer;
+  transition: all 0.2s ease;
+  color: #000;
 }
 
 .horario-btn:hover {
   background-color: #d0d0d0;
+  transform: translateY(-1px);
+}
+
+.horario-btn.seleccionado {
+  background-color: #009688;
+  color: white;
+  font-weight: 500;
+  box-shadow: 0 2px 5px rgba(0, 150, 136, 0.3);
 }

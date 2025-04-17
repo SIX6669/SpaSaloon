@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/modal.css';
-import ModalReserva from './modalReserva.jsx'; 
+import ModalReserva from './modalReserva.jsx';
 
 const Modal = ({ servicio, onClose }) => {
   const [opcionSeleccionada, setOpcionSeleccionada] = useState(null);
@@ -36,7 +36,7 @@ const Modal = ({ servicio, onClose }) => {
   // Si estamos mostrando el modal de reserva, renderizamos ese componente
   if (mostrarModalReserva) {
     return (
-      <ModalReserva 
+      <ModalReserva
         servicio={servicio}
         opcionSeleccionada={opcionSeleccionada}
         onClose={() => {
@@ -76,7 +76,7 @@ const Modal = ({ servicio, onClose }) => {
                         onClick={() => handleSeleccion(option)}
                       >
                         {option.nombre}
-              
+
                         {opcionSeleccionada === option && (
                           <div className="modal-opcion-detalles">
                             <p><strong>Descripción:</strong> {option.descripcion}</p>
@@ -94,7 +94,7 @@ const Modal = ({ servicio, onClose }) => {
                 </div>
               )}
             </div>
-            
+
             <div className="modal-button-container">
               <button className="modal-reservar-btn" onClick={handleReservar}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '8px' }}>
