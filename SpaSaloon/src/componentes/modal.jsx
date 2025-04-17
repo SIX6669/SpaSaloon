@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/modal.css';
+import ModalReserva from './modalReserva.jsx'; 
 
 const Modal = ({ servicio, onClose }) => {
   const [opcionSeleccionada, setOpcionSeleccionada] = useState(null);
+  const [mostrarModalReserva, setMostrarModalReserva] = useState(false);
 
   useEffect(() => {
     // Cada vez que se abre el modal con un nuevo servicio, limpiar la selección previa
     setOpcionSeleccionada(null);
+    setMostrarModalReserva(false);
   }, [servicio]);
 
   if (!servicio) return null;
@@ -16,14 +19,34 @@ const Modal = ({ servicio, onClose }) => {
   };
 
   const handleReservar = () => {
-    if (servicio.options && opcionSeleccionada) {
-      alert(`Reservando turno para: ${servicio.title} - ${opcionSeleccionada.nombre}`);
-    } else if (!servicio.options) {
-      alert(`Reservando turno para: ${servicio.title}`);
-    } else {
+    if (servicio.options && !opcionSeleccionada) {
       alert("Por favor seleccioná una opción primero.");
+      return;
     }
+    // En lugar de mostrar un alert, ahora mostramos el modal de reserva
+    setMostrarModalReserva(true);
   };
+
+  const handleReservaConfirmada = (detallesReserva) => {
+    // Aquí se podría integrar con un backend para guardar la reserva
+    console.log('Reserva confirmada:', detallesReserva);
+    // La lógica de confirmación ya está en el ModalReserva
+  };
+
+  // Si estamos mostrando el modal de reserva, renderizamos ese componente
+  if (mostrarModalReserva) {
+    return (
+      <ModalReserva 
+        servicio={servicio}
+        opcionSeleccionada={opcionSeleccionada}
+        onClose={() => {
+          setMostrarModalReserva(false);
+          onClose(); // Cerrar también el modal original
+        }}
+        onReservaConfirmada={handleReservaConfirmada}
+      />
+    );
+  }
 
   return (
     <div className="modal-overlay" onClick={onClose}>
