@@ -1,3 +1,50 @@
+.forgot-password-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.forgot-password-link {
+  color: #1E6091;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.forgot-password-link:hover {
+  text-decoration: underline;
+}
+
+.error-message {
+  color: #e74c3c;
+  font-size: 14px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.recovery-message {
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: #666;
+}
+.forgot-password-container {
+  text-align: right;
+  margin-top: -5px;
+  margin-bottom: 15px;
+}
+
+.forgot-password-link {
+  color: #64B5F6;
+  font-size: 14px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.forgot-password-link:hover {
+  color: #90CAF9;
+  text-decoration: underline;
+}
 .auth-sidebar {
     position: fixed;
     top: 0;

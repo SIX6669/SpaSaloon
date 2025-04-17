@@ -15,6 +15,7 @@ import SobreNosotros from './componentes/Body/sobre-nosotros.jsx';
 import Contacto from './componentes/Body/contacto.jsx';
 import Header from './componentes/Header/header.jsx';
 import Galeria from './componentes/Body/galeria.jsx';
+import PerfilUsuario from './componentes/PerfilUsuario/PerfilUsuario.jsx';
 
 
 
@@ -23,8 +24,8 @@ function App() {
     <>
       <Header />
       <div className="main-content">
-      <section className="section hero-section" id="hero">
-          <Hero />
+        <section className="section hero-section" id="hero">
+          <Hero></Hero>
         </section>
         <section className="section section-masajes" id="sobre-nosotros">
           <SobreNosotros></SobreNosotros>

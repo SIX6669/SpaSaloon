@@ -1,6 +1,5 @@
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
-// fotos importadas
 import slide1 from '../../assets/slide1.jpg';
 import slide2 from '../../assets/slide2.jpg';
 import slide3 from '../../assets/slide3.jpg';
