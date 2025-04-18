@@ -15,6 +15,13 @@ const ModalReserva = ({
   const [paso, setPaso] = useState(1); 
   const [diaSeleccionado, setDiaSeleccionado] = useState(null);
 
+  useEffect(() => {
+    document.body.classList.add('modal-open');
+    return () => {
+      document.body.classList.remove('modal-open');
+    };
+  }, []);
+
   const profesionales = [
     { id: 1, nombre: "Ana García", especialidad: "Masajista" },
     { id: 2, nombre: "Carlos Rodríguez", especialidad: "Terapeuta facial" },

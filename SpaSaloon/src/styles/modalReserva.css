@@ -15,9 +15,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 2rem;
+  padding: 2rem 0;
   color: white;
   z-index: 2;
+  text-align: center;
 }
 
 .modal-reserva-title {
@@ -27,30 +28,43 @@
   margin-bottom: 1rem;
   font-weight: 600;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  padding: 0 15px;
 }
 
 .modal-servicio-info {
   background: rgba(0, 150, 136, 0.85);
   padding: 1rem;
   border-radius: 10px;
-  max-width: 80%;
+  width: 60%;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .modal-servicio-info h3 {
   margin-top: 0;
   margin-bottom: 0.5rem;
   font-size: 1.4rem;
+  width: 100%;
+  text-align: center;
 }
 
 .modal-opcion-elegida {
   font-size: 1.1rem;
   margin: 0.5rem 0;
+  width: 100%;
+  text-align: center;
 }
 
 .modal-precio {
   font-size: 1.3rem;
   font-weight: 600;
   margin: 0.5rem 0 0;
+  width: 100%;
+  text-align: center;
 }
 
 .modal-reserva-details {
@@ -121,6 +135,7 @@
   margin-top: 0;
   font-size: 1.4rem;
   text-align: center;
+  width: 100%;
 }
 
 .encabezado {
@@ -152,6 +167,8 @@
   font-size: 1.2rem;
   color: #000;
   font-weight: 500;
+  text-align: center;
+  flex-grow: 1;
 }
 
 .dias-scroll {

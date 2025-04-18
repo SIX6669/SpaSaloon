@@ -9,6 +9,12 @@ const Modal = ({ servicio, onClose }) => {
   useEffect(() => {
     setOpcionSeleccionada(null);
     setMostrarModalReserva(false);
+    if (servicio) {
+      document.body.classList.add('modal-open');
+    }
+    return () => {
+      document.body.classList.remove('modal-open');
+    };
   }, [servicio]);
 
   if (!servicio) return null;
