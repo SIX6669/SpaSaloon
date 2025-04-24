@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
 * {
   box-sizing: border-box;
   transition: all 0.2s ease;
@@ -412,9 +414,6 @@ hr {
 html {
   scroll-behavior: smooth;
 }
-
-/* Add font import */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 
 .acciones-turno {
   margin-top: 1.5rem;
