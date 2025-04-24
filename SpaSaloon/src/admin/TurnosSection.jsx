@@ -65,6 +65,11 @@ const TurnosSection = () => {
         setTurnoSeleccionado(null);
     };
 
+    const handleGenerarReporte = () => {
+        alert("Generando reporte de turnos...");
+        // lógica para generar el reporte
+    };
+
     return (
         <div id="turnos">
             <h2>Turnos</h2>
@@ -113,9 +118,18 @@ const TurnosSection = () => {
                 <button className="btn-eliminar" disabled={!turnoSeleccionado} onClick={handleEliminar}>
                     Eliminar
                 </button>
+                <div className="spacer"></div>
+                <button className="btn-reporte" onClick={handleGenerarReporte}>
+                    Generar Reporte
+                </button>
             </div>
 
-            <ModalForm isOpen={mostrarModal} onClose={() => setMostrarModal(false)} title={`${modo === "crear" ? "Agregar" : "Editar"} Turno`}>
+            <ModalForm 
+                isOpen={mostrarModal} 
+                onClose={() => setMostrarModal(false)} 
+                title={`${modo === "crear" ? "Agregar" : "Editar"} Turno`}
+                onSave={handleGuardar}
+            >
                 <input
                     type="date"
                     placeholder="Fecha"

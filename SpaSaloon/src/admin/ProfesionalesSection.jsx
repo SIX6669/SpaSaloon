@@ -8,7 +8,7 @@ const ProfesionalesSection = () => {
             nombre: "Ana",
             apellido: "López",
             servicios: "Masajes relajantes, Reflexología",
-            antiguedad: "5 años",
+            activo: "1",
             email: "ana@example.com",
             telefono: "123456789",
         },
@@ -21,7 +21,7 @@ const ProfesionalesSection = () => {
         nombre: "",
         apellido: "",
         servicios: "",
-        antiguedad: "",
+        activo: "",
         email: "",
         telefono: "",
     });
@@ -32,7 +32,7 @@ const ProfesionalesSection = () => {
             nombre: "",
             apellido: "",
             servicios: "",
-            antiguedad: "",
+            activo: "",
             email: "",
             telefono: "",
         });
@@ -79,7 +79,7 @@ const ProfesionalesSection = () => {
                         <th>Nombre</th>
                         <th>Apellido</th>
                         <th>Servicios</th>
-                        <th>Antigüedad</th>
+                        <th>Activo</th>
                         <th>Email</th>
                         <th>Teléfono</th>
                     </tr>
@@ -98,7 +98,7 @@ const ProfesionalesSection = () => {
                             <td>{p.nombre}</td>
                             <td>{p.apellido}</td>
                             <td>{p.servicios}</td>
-                            <td>{p.antiguedad}</td>
+                            <td>{p.activo}</td>
                             <td>{p.email}</td>
                             <td>{p.telefono}</td>
                         </tr>
@@ -134,12 +134,13 @@ const ProfesionalesSection = () => {
                     value={formulario.servicios}
                     onChange={e => setFormulario({ ...formulario, servicios: e.target.value })}
                 />
-                <input
-                    type="text"
-                    placeholder="Antigüedad"
-                    value={formulario.antiguedad}
-                    onChange={e => setFormulario({ ...formulario, antiguedad: e.target.value })}
-                />
+                <select
+                    value={formulario.activo}
+                    onChange={e => setFormulario({ ...formulario, activo: e.target.value })}
+                >
+                    <option value="1">1</option>
+                    <option value="0">0</option>
+                </select>
                 <input
                     type="email"
                     placeholder="Email"
@@ -152,7 +153,6 @@ const ProfesionalesSection = () => {
                     value={formulario.telefono}
                     onChange={e => setFormulario({ ...formulario, telefono: e.target.value })}
                 />
-                <button onClick={handleGuardar}>Guardar</button>
             </ModalForm>
         </div>
     );

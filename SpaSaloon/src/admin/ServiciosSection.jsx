@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ModalForm from "./ModalForm.jsx"; 
+import ModalForm from "./ModalForm.jsx"; // Asegurate de tener este modal
 
 const ServiciosSection = () => {
     const [servicios, setServicios] = useState([
@@ -7,9 +7,10 @@ const ServiciosSection = () => {
             id: 1,
             nombre: "Anti-stress",
             categoria: "Masajes",
+            tipo: "Individual",
             precio: 2500,
             descripcion: "Masaje relajante para reducir el estrés.",
-            profesionales: "Ana López, Juan Pérez",
+            profesionales: "Ana López, Pedro García",
         },
     ]);
 
@@ -19,6 +20,7 @@ const ServiciosSection = () => {
     const [formulario, setFormulario] = useState({
         nombre: "",
         categoria: "",
+        tipo: "Individual",
         precio: "",
         descripcion: "",
         profesionales: "",
@@ -29,6 +31,7 @@ const ServiciosSection = () => {
         setFormulario({
             nombre: "",
             categoria: "",
+            tipo: "Individual",
             precio: "",
             descripcion: "",
             profesionales: "",
@@ -75,6 +78,7 @@ const ServiciosSection = () => {
                         <th>ID</th>
                         <th>Nombre</th>
                         <th>Categoría</th>
+                        <th>Tipo</th>
                         <th>Precio</th>
                         <th>Profesionales</th>
                         <th>Descripción</th>
@@ -86,13 +90,15 @@ const ServiciosSection = () => {
                             key={servicio.id}
                             onClick={() => setServicioSeleccionado(servicio)}
                             style={{
-                                backgroundColor: servicioSeleccionado?.id === servicio.id ? "#f0f0f0" : "white",
+                                backgroundColor:
+                                    servicioSeleccionado?.id === servicio.id ? "#f0f0f0" : "white",
                                 cursor: "pointer",
                             }}
                         >
                             <td>{servicio.id}</td>
                             <td>{servicio.nombre}</td>
                             <td>{servicio.categoria}</td>
+                            <td>{servicio.tipo}</td>
                             <td>${servicio.precio}</td>
                             <td>{servicio.profesionales}</td>
                             <td>{servicio.descripcion}</td>
@@ -131,6 +137,13 @@ const ServiciosSection = () => {
                     value={formulario.categoria}
                     onChange={e => setFormulario({ ...formulario, categoria: e.target.value })}
                 />
+                <select
+                    value={formulario.tipo}
+                    onChange={e => setFormulario({ ...formulario, tipo: e.target.value })}
+                >
+                    <option value="Individual">Individual</option>
+                    <option value="Grupal">Grupal</option>
+                </select>
                 <input
                     type="number"
                     placeholder="Precio"
@@ -147,7 +160,7 @@ const ServiciosSection = () => {
                     placeholder="Descripción"
                     value={formulario.descripcion}
                     onChange={e => setFormulario({ ...formulario, descripcion: e.target.value })}
-                />
+                ></textarea>
             </ModalForm>
         </div>
     );
