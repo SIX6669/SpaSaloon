@@ -1,9 +1,8 @@
 import React, { useState } from "react";
+import ModalForm from "./ModalForm.jsx"; 
 
 const TurnosSection = () => {
-    const [turnoSeleccionado, setTurnoSeleccionado] = useState(null);
-
-    const turnos = [
+    const [turnos, setTurnos] = useState([
         {
             id: 1,
             fecha: "2025-04-23",
@@ -11,28 +10,63 @@ const TurnosSection = () => {
             profesional: "Ana López",
             cliente: "Juan Pérez",
             servicio: "Masaje relajante",
-            precio: "$2500",
+            precio: "2500",
         },
-    ];
+    ]);
+
+    const [modo, setModo] = useState("crear");
+    const [mostrarModal, setMostrarModal] = useState(false);
+    const [turnoSeleccionado, setTurnoSeleccionado] = useState(null);
+    const [formulario, setFormulario] = useState({
+        fecha: "",
+        hora: "",
+        profesional: "",
+        cliente: "",
+        servicio: "",
+        precio: "",
+    });
 
     const handleAgregar = () => {
-        alert("Abrir modal para agregar turno");
+        setModo("crear");
+        setFormulario({
+            fecha: "",
+            hora: "",
+            profesional: "",
+            cliente: "",
+            servicio: "",
+            precio: "",
+        });
+        setMostrarModal(true);
     };
 
     const handleEditar = () => {
         if (turnoSeleccionado) {
-            alert(`Editar turno con ID: ${turnoSeleccionado.id}`);
+            setModo("editar");
+            setFormulario({ ...turnoSeleccionado });
+            setMostrarModal(true);
         }
     };
 
     const handleEliminar = () => {
-        if (turnoSeleccionado) {
-            alert(`Eliminar turno con ID: ${turnoSeleccionado.id}`);
+        if (turnoSeleccionado && window.confirm("¿Eliminar este turno?")) {
+            setTurnos(turnos.filter(t => t.id !== turnoSeleccionado.id));
+            setTurnoSeleccionado(null);
         }
     };
 
+    const handleGuardar = () => {
+        if (modo === "crear") {
+            const nuevo = { ...formulario, id: Date.now() };
+            setTurnos([...turnos, nuevo]);
+        } else {
+            setTurnos(turnos.map(t => (t.id === formulario.id ? formulario : t)));
+        }
+        setMostrarModal(false);
+        setTurnoSeleccionado(null);
+    };
+
     return (
-        <div>
+        <div id="turnos">
             <h2>Turnos</h2>
             <button className="btn-agregar" onClick={handleAgregar}>
                 Agregar Turno
@@ -51,12 +85,13 @@ const TurnosSection = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {turnos.map((t) => (
+                    {turnos.map(t => (
                         <tr
                             key={t.id}
-                            onClick={() => setTurnoSeleccionado(t)} 
+                            onClick={() => setTurnoSeleccionado(t)}
                             style={{
-                                backgroundColor: turnoSeleccionado?.id === t.id ? "#f0f0f0" : "white", 
+                                backgroundColor: turnoSeleccionado?.id === t.id ? "#f0f0f0" : "white",
+                                cursor: "pointer",
                             }}
                         >
                             <td>{t.id}</td>
@@ -65,29 +100,59 @@ const TurnosSection = () => {
                             <td>{t.profesional}</td>
                             <td>{t.cliente}</td>
                             <td>{t.servicio}</td>
-                            <td>{t.precio}</td>
+                            <td>${t.precio}</td>
                         </tr>
                     ))}
                 </tbody>
             </table>
 
-            {/* Botones de acciones de turno (solo habilitados si hay un turno seleccionado) */}
             <div className="acciones-turno">
-                <button
-                    className="btn-editar"
-                    disabled={!turnoSeleccionado}
-                    onClick={handleEditar}
-                >
+                <button className="btn-editar" disabled={!turnoSeleccionado} onClick={handleEditar}>
                     Editar
                 </button>
-                <button
-                    className="btn-eliminar"
-                    disabled={!turnoSeleccionado}
-                    onClick={handleEliminar}
-                >
+                <button className="btn-eliminar" disabled={!turnoSeleccionado} onClick={handleEliminar}>
                     Eliminar
                 </button>
             </div>
+
+            <ModalForm isOpen={mostrarModal} onClose={() => setMostrarModal(false)} title={`${modo === "crear" ? "Agregar" : "Editar"} Turno`}>
+                <input
+                    type="date"
+                    placeholder="Fecha"
+                    value={formulario.fecha}
+                    onChange={e => setFormulario({ ...formulario, fecha: e.target.value })}
+                />
+                <input
+                    type="time"
+                    placeholder="Hora"
+                    value={formulario.hora}
+                    onChange={e => setFormulario({ ...formulario, hora: e.target.value })}
+                />
+                <input
+                    type="text"
+                    placeholder="Profesional"
+                    value={formulario.profesional}
+                    onChange={e => setFormulario({ ...formulario, profesional: e.target.value })}
+                />
+                <input
+                    type="text"
+                    placeholder="Cliente"
+                    value={formulario.cliente}
+                    onChange={e => setFormulario({ ...formulario, cliente: e.target.value })}
+                />
+                <input
+                    type="text"
+                    placeholder="Servicio"
+                    value={formulario.servicio}
+                    onChange={e => setFormulario({ ...formulario, servicio: e.target.value })}
+                />
+                <input
+                    type="number"
+                    placeholder="Precio"
+                    value={formulario.precio}
+                    onChange={e => setFormulario({ ...formulario, precio: e.target.value })}
+                />
+            </ModalForm>
         </div>
     );
 };
